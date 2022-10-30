@@ -3,38 +3,18 @@ class Solution(object):
         """
         :type arr: List[int]
         :rtype: int
-        -每一个距离增肌
-        -每3个距离增加
-        -最后全加一起
+        暴力解法+切片
         """
+        n = len(arr)
         res = 0 
-        
-        def loop(arr):
-            res = 0
-            for i in arr:
-                res+=i 
-            return res 
-        # example2 
-        if len(arr)<3:
-            for i in arr:
-                res += i 
-        
-        
-        for i in range(len(arr)):
-            res += arr[i]
-            # 15
-
-        for i in range(3):
-            print(f"{i}---{arr[i:i+3]}")
-
-            res += loop(arr[i:i+3])
-
-                
-        for i in arr:
-            res+=i     
-        print(res)
-
+        # step =2 
+        for l in range(1,n+1,2):
+            for i in range(n-l+1):
+                print(f"l = {l},i = {i},arr[i:i+l]={arr[i:i+l]}")
+                res += sum(arr[i:i+l])
+        return res 
         
 arr = [1,4,2,5,3]
 # arr = [1,2]
+# arr= [10,11,12]
 obj = Solution().sumOddLengthSubarrays(arr)
