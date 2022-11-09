@@ -5,12 +5,15 @@ class Solution(object):
         :type first: int
         :rtype: List[int]
         解码异或后的数组
+        还是不太懂什么叫做位运算？
         """
-        arr = []
-        for i in range(len(encoded)):
-            if i+1 <len(encoded):
-                arr.append(encoded[i]^encoded[i+1])
-        print(arr)
+        res = [first]
+        # print(res)
+        for a in encoded:
+            print(res[-1],a)
+            res.append(res[-1]^a)
+        print(res)
+        return res
 
 encoded = [1,2,3]
 first = 1
