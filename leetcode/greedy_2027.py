@@ -3,25 +3,21 @@ class Solution(object):
         """
         :type s: str
         :rtype: int
-        https://leetcode.com/problems/minimum-moves-to-convert-string/
-
         """
-        if not 'X' in s:
-            return 0
+        i = 0
+        res = 0
+        while i < len(s):
+            if s[i] == "X":
+                i += 3
+                res += 1
+            else:
+                i += 1
 
-        ans = []
-        left =0
+        return res
 
-        while left<len(s):
-            if s[left]!="X":
-                ans.append(left)
-            left += 1
-
-        # return len(ans)+1
-        print(ans)
 
 
 s = "XXX"
-# s = 'XX0X'
-# s = "OXOX"
+s = 'XXOX'
+s = "OXOX"
 obj = Solution().minimumMoves(s)
