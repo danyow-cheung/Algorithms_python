@@ -5,17 +5,12 @@ class Solution(object):
         :type indices: List[int]
         :rtype: str
         """
-        res = []
-        word_=[]
+        ans = [None]*len(indices)
+        print(ans)
+        for i in range(len(s)):
+            ans[indices[i]]= s[i]
 
-        for i in s:
-            word_.append(i)
-
-        for i in range(len(indices)):
-            print(indices[i],s[i])
-            res.insert(indices[i],word_[i])
-            print(res)
-        print("".join(res))
+        print("".join(ans))
 
 s = 'codeleet'
 indices = [4,5,6,7,0,2,1,3]
