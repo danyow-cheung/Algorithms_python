@@ -4,25 +4,25 @@ class Solution(object):
         :type rings: str
         :rtype: int
         """
-        ans_color  = []
-        ans_rods = []
-        dict_ ={}
+        d=  {}
+        res = 0
+        for i in range(10):
+            d[i] = [0,0,0]
+        print(d)
         for i in range(0,len(rings),2):
-            print(rings[i])
+            j = int(rings[i+1])
+            if rings[i] =='R':
+                d[j][0]+=1
+            elif rings[i]=='G':
+                d[j][1]+=1
+            else:
+                d[j][2]+=1
+        print(d)
 
-            # # 字母
-            # if i.isalpha():
-            #     ans_color.append(i)
-            # # 数字
-            # if i.isdigit():
-            #     ans_rods.append(i)
-
-        # print(ans_rods)
-        # print(ans_color)
-        # for i in range(len(ans_rods)):
-        #
-        #     dict_[ans_rods[i]] = ans_color[i]
-        # print(dict_)
-
+        for v in d.values():
+            print(v)
+            if min(v)>0:
+                res+=1
+        print(res)
 rings = "B0B6G0R6R0R6G9"
 obj = Solution().countPoints(rings)
