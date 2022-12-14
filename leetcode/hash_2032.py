@@ -1,3 +1,6 @@
+import collections
+
+
 class Solution(object):
     def twoOutOfThree(self, nums1, nums2, nums3):
         """
@@ -6,14 +9,14 @@ class Solution(object):
         :type nums3: List[int]
         :rtype: List[int]
         """
-        ans = set()
-        for i in nums1:
-            ans.add(i)
-        print('default set = ',ans)
+        s1 = set(nums1)
+        s2 = set(nums2)
+        s3 = set(nums3)
 
-        for i in nums3:
-            if i not in ans:
-                print(i)
+        # print(s1&s2,s1&s2,s2&s3)
+        return (s1 & s2) | (s2 & s3) | (s1 & s3)
+
+        
 
 nums1 = [1,1,3,2]
 nums2 = [2,3]
