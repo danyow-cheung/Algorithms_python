@@ -2,6 +2,12 @@ import collections
 
 
 class Solution(object):
+    def add(self,ans,key,value):
+        while value>0:
+            ans.append(key)
+            value-=1
+        return ans
+
     def relativeSortArray(self, arr1, arr2):
         """
         :type arr1: List[int]
@@ -13,8 +19,8 @@ class Solution(object):
         print(count)
         for i in range(len(arr2)):
             if count[arr2[i]]:
-                # print(count[arr2[i]],arr2[i])
                 ans.append([arr2[i]]*count[arr2[i]])
+
         print(ans)
         res = []
         for i in ans:
@@ -22,14 +28,10 @@ class Solution(object):
                 res.append(j)
 
         print(res)
-        arr1.sort()
 
-        # for i in arr1:
-        #     if i not in res:
-        #         res.append(i)
         for key,value in sorted(count.items(),key=lambda x:x[0]):
             if key not in res:
-                res.append([key]*value)
+                self.add(res,key,value)
 
 
         print(res)
