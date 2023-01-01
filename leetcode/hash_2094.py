@@ -1,3 +1,6 @@
+import collections
+
+
 class Solution(object):
     def contain(self,num,digits):
 
@@ -33,6 +36,14 @@ class Solution(object):
         # ans = [i for i  in res ]
         print(sorted(ans))
         print( sorted([i for i in res]))
+
+    def findEvenNumbers_leetcode(self,digits):
+        ans = []
+        freq = collections.Counter(digits)
+        for x in range(100,1000,2):
+            if not collections.Counter(int(d) for d in str(x)) -freq:
+                ans.append(x)
+        return  ans
 
 
 digits = [2,1,3,0]
