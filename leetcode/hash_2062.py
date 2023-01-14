@@ -7,23 +7,16 @@ class Solution(object):
         :type word: str
         :rtype: int
         """
-        dict ={'a':0,'e':0,'i':0,'o':0,'u':0}
-        # 构建哈希表
-        for i in word:
-            if i in dict:
-                dict[i]+=1
+        vowels = {'a', 'e', 'i', 'o', 'u'}
 
-        print('dict = ',dict)
-        ans = 1
-        # 缺少部分元素
-        if min(dict.values())==0:
-            ans = 0
-            return ans
-
-        for value in dict.values():
-            ans*=value
-        print('ans,len(word)',ans,len(word))
-
+        ans, last_consonant = 0, -1
+        last_seen_vowels = {v: -2 for v in vowels}
+        for i, x in enumerate(word):
+            if x not in vowels:
+                last_consonant = i
+            else:
+                last_seen_vowels[x] = i
+                ans += max(min(last_seen_vowels.values()) - last_consonant, 0)
         return ans
 
 word = 'aeiouu'
