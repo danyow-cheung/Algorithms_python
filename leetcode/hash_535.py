@@ -1,4 +1,8 @@
+import random
+
 class Codec:
+    def __init__(self):
+        self.hash  ={}
 
     def encode(self, longUrl):
         """Encodes a URL to a shortened URL.
@@ -6,7 +10,16 @@ class Codec:
         :type longUrl: str
         :rtype: str
         """
-        print(longUrl)
+        # print(longUrl)
+        val = -1 
+        while True:
+            val = random.randint(0,10000)
+            if val not in self.hash:
+                self.hash[val]=longUrl 
+                break
+        return str(val)
+
+
 
     def decode(self, shortUrl):
         """Decodes a shortened URL to its original URL.
@@ -14,7 +27,8 @@ class Codec:
         :type shortUrl: str
         :rtype: str
         """
-        print("decode to shorturl ")
+        # print("decode to shorturl ")
+        return self.hash[int(shortUrl)]
 
 # Your Codec object will be instantiated and called as such:
 codec = Codec()
