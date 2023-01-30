@@ -71,10 +71,29 @@ class Solution(object):
                 mat[nr][nc]==mat[r][c]+1
                 q.append((nr,nc))
         print(mat)
+
+        return mat 
+    def updateMatrix_dp(self, mat):
+        import math
+        m = len(mat)
+        n = len(mat[0])
+        for r in range(m):
+            for c in range(n):
+                if mat[r][c] >0:
+                    top = mat[r-1][c] if r>0 else math.inf 
+                    left = mat[r][c-1] if c>0 else math.inf 
+                    mat[r][c] = min(top,left)+1 
+        for i in range(m-1,-1,-1):
+            for c in range(n-1,-1,-1):
+                if mat[r][c]>0:
+                    bottom = mat[r+1][c] if r<m-1 else math.inf 
+                    right = mat[r][c+1] if c<n-1 else math.inf 
+                    mat[r][c] = min(mat[r][c],bottom+1,right+1)
+        print(mat)
         
         return mat 
 
 mat = [[0,0,0],[0,1,0],[0,0,0]]
 
 mat = [[0,0,0],[0,1,0],[1,1,1]]
-obj =  Solution().updateMatrix(mat)
+obj =  Solution().updateMatrix_dp(mat)
