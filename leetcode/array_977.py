@@ -16,7 +16,7 @@ class Solution(object):
         ans = [-1]*n 
         while i<=j:
             lm = nums[i]**2 
-            rm = nums[i]**2 
+            rm = nums[j]**2 
             if lm>rm:
                 ans[k]=lm
                 i+=1
@@ -25,7 +25,7 @@ class Solution(object):
                 j-=1 
             k-=1 
         return ans 
-         
+
 
         
 
