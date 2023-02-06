@@ -26,7 +26,24 @@ class Solution(object):
     def longestPalindrome_twoDimension(self):
         '''https://leetcode.com/problems/longest-palindrome-by-concatenating-two-letter-words/solutions/2715749/longest-palindrome-by-concatenating-two-letter-words/
         '''
-        
+        alpha_size =26 
+        count = [[0] for j in range(alpha_size) for i in range(alpha_size)]
+        for word in words:
+            count[ord(word[0]) - ord('a')][ord(word[1]) - ord('a')] += 1 
+        ans = 0 
+        central = False
+        for i in range(alpha_size):
+            if count[i][j]%2==0:
+                ans += count[i][i]
+            else:
+                ans += count[i][i] -1 
+                central = True
+            for j in range(i+1,alpha_size):
+                ans += 2*min(count[i][j],count[j][i])
+        if central:
+            ans +=1 
+        return 2*ans
+
 
 
 
