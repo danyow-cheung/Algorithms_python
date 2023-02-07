@@ -17,9 +17,9 @@ class Solution(object):
                 l = l+1 
             seen.add(s[i])
             res = max(res,i-l+1)
-        return res 
+        return res         
 
-
+        
 s = "abcabcbb"
 # s = 'bbbbbb'
 # s = "pwwkew"
