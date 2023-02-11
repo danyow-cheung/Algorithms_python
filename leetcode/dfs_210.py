@@ -1,4 +1,5 @@
-from collections import defaultdict
+from collections import defaultdict,deque
+
 
 
 class Graph:
@@ -37,7 +38,7 @@ class Graph:
 
 
 
-class Solution_dfs(object):
+class Solution_node_indegree(object):
     def findOrder(self, numCourses, prerequisites):
         """
         :type numCourses: int
@@ -46,10 +47,39 @@ class Solution_dfs(object):
         拓撲排序 (Topological sorting)
         https://leetcode.com/problems/course-schedule-ii/solutions/205947/course-schedule-ii/
         """
+        # 準備圖
+        adj_list = defaultdict(list)
+        indegree = {}
+        for dest,src in prerequisites:
+            adj_list[src].append(dest)
+
+            # 紀錄每個節點的深度
+            indegree[dest] = indegree.get(dest,0)+1 
+        
+        #维护0 in-degree节点列表的队列
+        zero_indegree_queue = deque([k for k in range(numCourses) if k not in indegree]) 
+
+        topological_sorted_order = []
+
+        # 直到隊列中沒有元素
+        while zero_indegree_queue:
+            # 彈出元素
+            vertex = zero_indegree_queue.popleft()
+            topological_sorted_order.append(vertex)
+
+            # #降低所有邻居的等级
+            if vertex in adj_list:
+                for neighbor in adj_list[vertex]:
+                    indegree[neighbor] -=1 
+                    # 如果in-degree为0，则向Q添加邻居
+                    if indegree[neighbor]==0:
+                        zero_indegree_queue.append(neighbor)
+        return topological_sorted_order if len(topological_sorted_order)==numCourses else []
+        
 
         
 
-class Solution_node_indegree(object):
+class Solution_dfs(object):
     WHITE = 1 
     GRAY  = 2 
     BLACK = 3
