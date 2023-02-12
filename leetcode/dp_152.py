@@ -27,24 +27,43 @@ class Solution(object):
         # print(dp)
         for i in range(len(nums)):
             for j in range(i+1,len(nums)):
-                # print(nums[i],nums[j])
-                # print(dp,type(dp[i]),dp[i])
-                # print(nums[i:j+1])
-                # print(dp[i],type(dp[i]))
-                # dp[i] = max(self.plus(dp[i]),self.plus(nums[i:j+1]))
                 a = self.plus(dp[i])
                 b = self.plus(nums[i:j+1])
-                # a = reduce(lambda x,y:x*y ,dp[i])
-                # b = reduce(lambda x,y:x*y ,nums[i:j+1])
-                
-                # print(dp[i],type(dp[i]))
-                # print(nums[i:j+1],type(nums[i:j+1]))
-                # dp[i] = max(self.plus(dp[i]),self.plus(nums[i:j+1]))
+                '''應該可以是實現的，但是報錯'''
                 dp[i] = max(a,b)
                 print("\n")
-
         print('final-dp',dp)
 
+
+    def maxProduct_leetcode(self, nums):
+        '''https://leetcode.com/problems/maximum-product-subarray/solutions/3091884/python-dynamic-programming-with-min-and-max-8-lines-86-ms-faster-than-80-77/'''
+        mp = nums[0]
+        ps = {nums[0]}
+        for n in nums[1:]:
+            if n==0:
+                mp = max(mp,0)
+                ps = {0}
+            if n==1:
+                mp = max(mp,1)
+
+            ps = [p*n for p in ps]+[n]
+            pmax ,pmin = max(ps),min(ps)
+            mp,ps = max(mp,max),set([pmax,pmin])
+        return mp 
+
+
+    def maxProduct_leetcode_2(self,nums):
+        '''https://leetcode.com/problems/maximum-product-subarray/solutions/2859129/python-js-easy-logic-kadane-s-algo-concise-solution-o-1-dp-o-n-tc/'''
+        maxi = mini = res = nums[0]
+
+        for num in nums[1:]:
+            currMax = max(maxi * num, mini * num, num)
+            currMin = min(maxi * num, mini * num, num)
+            maxi = currMax
+            mini = currMin
+            res = max(res, maxi)
+        
+        return res
 
 nums = [2,3,-2,4]
 obj = Solution().maxProduct(nums)
