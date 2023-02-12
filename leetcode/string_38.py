@@ -29,7 +29,29 @@ class Solution(object):
         print("".join(str(i[1])+str(i[0]) for i in array))
         return ("".join(str(i[1])+str(i[0]) for i in array))
         
-    
+    def countAndSay_leetcode(self, n):
+        '''https://leetcode.com/problems/count-and-say/solutions/2716350/recursive-solution-python/'''
+        ans = self.say(n)
+        return ans 
+
+    def say(self,remain):
+        if remain==1:
+            return "1"
+
+        res = self.say(remain-1)
+        ans =""
+        count = 0
+        temp = res[0]
+
+        for char in res:
+            if char!=temp:
+                ans += str(count)+temp 
+                count = 0
+                temp = char 
+            count +=1 
+        ans += str(count)+temp
+        return ans 
+        
 
 
 n = 1
