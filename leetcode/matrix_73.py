@@ -28,14 +28,18 @@ class Solution(object):
         C = len(matrix[0])
         rows,cols = set(),set()
 
-
+        #本质上，我们将行和列标记为零
         for i in range(R):
             for j in range(C):
                 if matrix[i][j]==0:
                     rows.add(i)
                     cols.add(j)
-        
-        
+        # 再次遍历数组并使用rows和cols集合更新元素
+        for i in range(R):
+            for j in range(C):
+                if i in rows or j in cols:
+                    matrix[i][j]=0 
+                    
             
 
 matrix = [[1,1,1],[1,0,1],[1,1,1]]
