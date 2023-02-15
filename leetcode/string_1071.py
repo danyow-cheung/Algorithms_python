@@ -1,8 +1,18 @@
 class Solution(object):
-    def gcdOfStrings_leetcode(self, str1, str2):
+    def gcdOfStrings_leetcode_python(self, str1, str2):
+        if len(str1)<len(str2):
+            str1,str2 = str2,str1 
+        if str1==str2:
+            return str1 
+        if str1[:len(str2)]!=str2:
+            return ""
+        return self.gcdOfStrings_leetcode_python(str1[len(str2):],str2)
+        
+
+    def gcdOfStrings_leetcode_python3(self, str1, str2):
         if str1+str2!=str2+str1:
             return ""
-        import gcd 
+        # import gcd 
 
         # get the gcd of the two lengths
         max_length = gcd(len(str1),len(str2))# not work in python,but ok in python3 
