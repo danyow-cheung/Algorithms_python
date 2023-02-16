@@ -92,7 +92,26 @@ class Solution(object):
         # print(res)
         return res 
 
+    def asteroidCollision_leetcode(self, asteroids):
+        '''
+        https://leetcode.com/problems/asteroid-collision/solutions/127685/asteroid-collision/?envType=study-plan&id=level-2
 
+        '''
+
+        ans = []
+        for cur in asteroids:
+            while ans and cur <0<ans[-1]:
+                if ans[-1]<-cur:
+                    ans.pop()
+                    continue
+                elif ans[-1]==-cur:
+                    ans.pop()
+                break
+            else:
+                ans.append(cur) 
+        return ans 
+        
+    
 
 asteroids = [5,10,-5]
 asteroids = [8,-8]
