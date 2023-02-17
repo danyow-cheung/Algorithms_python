@@ -15,11 +15,18 @@ class Solution(object):
             if not root:
                 return 
             res.append(root.val)
-            dfs(root.left)
-            dfs(root.right)
-        res.sort()
-        print(res)
-        
+            if root.left:
+                dfs(root.left)
+            if root.right:
+                dfs(root.right)
+        dfs(root)
+
+        ans = float('inf')
+        for i in range(len(res)-1):
+            ans = min(ans,abs(res[i]-res[i+1]))
+        # return abs(res[0]-res[1])
+        return ans
+
 
 
 root = [4,2,6,1,3]
