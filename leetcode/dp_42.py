@@ -1,5 +1,28 @@
 class Solution(object):
-
+    def trap_2(self,height):
+        '''
+        https://leetcode.com/problems/trapping-rain-water/solutions/3052416/python-simple-solution-beats-100-two-pointers-explained/
+        '''
+        total_water = 0 
+        left_wall = 0 
+        right_wall = len(height)-1 
+        max_left_wall = 0 
+        max_right_wall = 0 
+        while left_wall<right_wall:
+            if height[left_wall]<=height[right_wall]:
+                if height[left_wall]>=max_left_wall:
+                    max_left_wall = height[left_wall]
+                else:
+                    total_water += max_left_wall - height[left_wall]
+                left_wall +=1 
+            else:
+                if height[right_wall]>=max_right_wall:
+                    max_right_wall = height[right_wall]
+                else:
+                    total_water += max_right_wall - height[right_wall]
+                right_wall -=1 
+        return total_water
+        
     def trap(self, height):
         """
         :type height: List[int]
@@ -11,8 +34,6 @@ class Solution(object):
         ans = 0 
         size = len(height)
 
-       
-        
         for i in range(1,size-1):
             left_max= 0
             right_max = 0
