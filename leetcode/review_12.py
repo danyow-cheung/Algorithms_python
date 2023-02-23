@@ -4,25 +4,23 @@ class Solution(object):
         :type num: int
         :rtype: str
         """
-        hash = {
-            1:'I',
-            5:'V',
-            10:'X',
-            50:'L',
-            100:'C',
-            500:'D',
-            1000:'M'
+        num_map = {
+            1: "I",
+            5: "V",    4: "IV",
+            10: "X",   9: "IX",
+            50: "L",   40: "XL",
+            100: "C",  90: "XC",
+            500: "D",  400: "CD",
+            1000: "M", 900: "CM",
         }
-        res = []
-        print(num)
-        
-        while num>0:
-            num = num//10    
-            
-            if hash[num]:
-                res.append(hash[num])
-            print(num)
-        print("".join(res))
 
+        # 先抄一下一点头绪都没有捏
+        res = ""
+        for n in [1000,900,500,400,100,90,50,40,10,9,5,4,1]:
+            while n<=num:
+                res += num_map[n]
+                num -= n 
+        return res 
+        
 num = 30
 obj = Solution().intToRoman(num)
