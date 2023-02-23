@@ -11,7 +11,7 @@ class Solution(object):
         """
         :type height: List[int]
         :rtype: int
-        还没写完但是不屑了
+        
         """
         ans = 0 
         for i in range(len(height)):
