@@ -11,7 +11,7 @@ class Solution(object):
         """
         :type height: List[int]
         :rtype: int
-        
+
         """
         ans = 0 
         for i in range(len(height)):
@@ -26,6 +26,19 @@ class Solution(object):
             # ans = max(ans,area)
         
         # print('final ans',ans)
+    def maxArea_leetcode(self, height):
+        res = 0 
+        l = 0 
+        r = len(height)-1 
+        while l<r:
+            area = (r-l)*min(height[l],height[r])
+            res = max(res,area)
+            if height[l]<height[r]:
+                l+=1 
+            else:
+                r-=1 
+        return res 
+        
 
 height = [1,8,6,2,5,4,8,3,7]
 obj = Solution().maxArea(height)
