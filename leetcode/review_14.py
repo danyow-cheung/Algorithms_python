@@ -5,9 +5,18 @@ class Solution(object):
         :rtype: str
         没有脑子不会写了
         """
-        n = len(strs)
-        for i in range(n):
-            print(strs[i])
+        for i in range(0,len(strs[0])):
+            # 第一个元素
+            temp = strs[0][i]
+            
+            for j in range(0,len(strs)):
+                # 第二个元素到后面的
+                # print(strs[j])
+                if (len(strs[j])==i or strs[j][i]!=temp):
+                    return strs[0][:i]
+        return strs[0]
+    
+
 
 
 
